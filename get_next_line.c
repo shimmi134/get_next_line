@@ -1,0 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shimi-be <shimi-be@student.42barcelon      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/22 18:34:32 by shimi-be          #+#    #+#             */
+/*   Updated: 2024/11/22 22:37:22 by shimi-be         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "get_next_line.h"
+
+char *get_next_line(int fd)
+{
+	static char	*stash = NULL;
+	char	*arr;
+	char	*temp;
+
+	if (fd < 0 || BUFFER_SIZE < 0 || BUFFER_SIZE < 0)
+		return (NULL);
+	temp = NULL;
+	if (!stash || !ft_strchr(stash,0))
+	{
+		if (stash && !ft_strchr(stash,0))
+		{
+			temp = ft_strjoin(NULL,stash);
+			free(stash);
+		}
+		stash = get_line(stash,fd);
+		arr = stash;
+		stash = ft_strjoin(temp,stash);
+		free(arr);
+		free(temp);
+		//free(temp2);
+		temp = NULL;
+		arr = NULL;
+	}
+	arr = trim_line(stash);
+	if (!arr)
+		return (free(stash),NULL);
+	temp = stash;
+	stash = ft_strchr(stash,1);
+	free(temp);
+	if (!stash) //MALL
+		return (free(arr),NULL);
+	return (arr);
+}
