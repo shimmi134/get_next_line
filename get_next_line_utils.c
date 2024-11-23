@@ -6,7 +6,7 @@
 /*   By: shimi-be <shimi-be@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:34:40 by shimi-be          #+#    #+#             */
-/*   Updated: 2024/11/23 16:13:35 by shimi-be         ###   ########.fr       */
+/*   Updated: 2024/11/23 17:52:52 by shimi-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,9 @@ char	*get_line(char *stash, int fd)
 			stash = arr;
 		}
 		else if (bytes_read < 0)
-			return (NULL);
+		{
+			return (free(buff),NULL);		
+		}
 	}
 	free(buff);
 	free(temp);
