@@ -6,7 +6,7 @@
 /*   By: shimi-be <shimi-be@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:34:32 by shimi-be          #+#    #+#             */
-/*   Updated: 2024/11/23 17:33:44 by shimi-be         ###   ########.fr       */
+/*   Updated: 2024/11/23 17:35:25 by shimi-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 char *get_next_line(int fd)
 {
 	static char	*stash = NULL;
-	char	*buff[1];
+	//char	*buff[1];
 	char	*arr;
 	char	*temp;
 
-	if (fd < 0 || BUFFER_SIZE < 0 || read(fd,buff,BUFFER_SIZE) < 0)
+	if (fd < 0 || BUFFER_SIZE < 0)//|| read(fd,buff,BUFFER_SIZE) < 0
 		return (NULL);
 	temp = NULL;
 	if (!stash || !ft_strchr(stash,0))
