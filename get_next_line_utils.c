@@ -6,7 +6,7 @@
 /*   By: shimi-be <shimi-be@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:34:40 by shimi-be          #+#    #+#             */
-/*   Updated: 2024/11/23 15:55:23 by shimi-be         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:56:39 by shimi-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char *ft_strchr(char *str, int flag)
 	if (!str)
 		return (NULL);
 	i = 0;
-	printf("Str: %s\n",str);
 	while (str[i])
 	{
 		if (str[i] == '\n')
