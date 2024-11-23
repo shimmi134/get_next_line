@@ -6,7 +6,7 @@
 /*   By: shimi-be <shimi-be@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 21:55:52 by shimi-be          #+#    #+#             */
-/*   Updated: 2024/11/23 15:50:33 by shimi-be         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:08:02 by shimi-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int main(int ac, char *av[])
 	ac = fd;
     while ((line = get_next_line(fd)) != NULL)
     {
-		printf("Iter %i",i);
-		i++;
         printf("%s", line);
         free(line);
     }
