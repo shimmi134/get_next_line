@@ -6,7 +6,7 @@
 /*   By: shimi-be <shimi-be@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:34:40 by shimi-be          #+#    #+#             */
-/*   Updated: 2024/11/23 14:12:00 by shimi-be         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:42:58 by shimi-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,20 @@ char *ft_strchr(char *str, int flag)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '\n' && flag)
+		if (str[i] == '\n')
 		{
-			if (str[i+1] == '\0')
-				return (NULL);
-			return (ft_strjoin(NULL,&str[i+1]));
-		}
-		else if (str[i] == '\n' && !flag)
-		{
-			if (str[i+1] == '\0')
-				return (NULL);
-			return (&str[i+1]);
+			if (flag)
+			{
+				if (str[i+1] == '\0')
+					return (NULL);
+				return (ft_strjoin(NULL,&str[i+1]));
+			}
+			else
+			{
+				if (str[i+1]== '\0')
+					return (NULL);
+				return (&str[i+1]);
+			}
 		}
 		i++;
 	}
