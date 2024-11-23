@@ -6,11 +6,11 @@
 /*   By: shimi-be <shimi-be@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:34:40 by shimi-be          #+#    #+#             */
-/*   Updated: 2024/11/23 15:42:58 by shimi-be         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:55:23 by shimi-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include <stdio.h>
 #include "get_next_line.h"
 
 int	ft_strlen(char *str)
@@ -32,6 +32,7 @@ char *ft_strchr(char *str, int flag)
 	if (!str)
 		return (NULL);
 	i = 0;
+	printf("Str: %s\n",str);
 	while (str[i])
 	{
 		if (str[i] == '\n')
@@ -126,6 +127,7 @@ char	*get_line(char *stash, int fd)
 	if (!buff)
 		return (NULL);
 	bytes_read = 1;
+	buff[0]='\0';
 	while (bytes_read > 0 && !temp)
 	{
 		free (temp);
