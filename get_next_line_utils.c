@@ -6,7 +6,7 @@
 /*   By: shimi-be <shimi-be@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:34:40 by shimi-be          #+#    #+#             */
-/*   Updated: 2024/11/23 15:56:39 by shimi-be         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:13:35 by shimi-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ char *trim_line(char *str)
 
 	len = 0;
 	i = 0;
+	if (!str)
+		return (NULL);
 	while (str[len] && str[len] != '\n')
 		len++;
 	if (str[len] == '\n')
@@ -85,6 +87,8 @@ char *ft_strjoin(char *s1, char *s2)
 	int i;
 	int j;
 
+	if (!s1 && !s2)
+		return (NULL);
 	i = ft_strlen(s1);
 	j = ft_strlen(s2);
 	arr = (char *)malloc(sizeof(char)*(i+j)+1);

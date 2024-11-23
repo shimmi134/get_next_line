@@ -6,7 +6,7 @@
 /*   By: shimi-be <shimi-be@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:34:32 by shimi-be          #+#    #+#             */
-/*   Updated: 2024/11/23 16:07:38 by shimi-be         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:12:01 by shimi-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char *get_next_line(int fd)
 	temp = stash;
 	stash = ft_strchr(stash,1);
 	free(temp);
-	if (!stash) 
-		return (free(arr),NULL);
+	//if (!stash) 
+//		return (free(arr),NULL);
 	return (arr);
 }
