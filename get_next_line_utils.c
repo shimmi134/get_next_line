@@ -6,7 +6,7 @@
 /*   By: shimi-be <shimi-be@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:34:40 by shimi-be          #+#    #+#             */
-/*   Updated: 2024/11/22 22:42:49 by shimi-be         ###   ########.fr       */
+/*   Updated: 2024/11/23 14:12:00 by shimi-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,14 +112,16 @@ char *ft_strjoin(char *s1, char *s2)
 char	*get_line(char *stash, int fd)
 {
 	int	bytes_read;
-	char	buff[BUFFER_SIZE + 1];
+	char	*buff;
 	char	*arr;
 	char	*temp;
 
 	stash = NULL;
 	arr = NULL;
 	temp = NULL;
-	buff [0] ='\0';
+	buff = (char *)malloc(BUFFER_SIZE+1);
+	if (!buff)
+		return (NULL);
 	bytes_read = 1;
 	while (bytes_read > 0 && !temp)
 	{
@@ -133,9 +135,10 @@ char	*get_line(char *stash, int fd)
 			free(stash);
 			stash = arr;
 		}
-		if (bytes_read < 0)
+		else if (bytes_read < 0)
 			return (NULL);
 	}
+	free(buff);
 	free(temp);
 	return (arr);
 }
