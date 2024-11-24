@@ -6,7 +6,7 @@
 /*   By: shimi-be <shimi-be@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:44:51 by shimi-be          #+#    #+#             */
-/*   Updated: 2024/11/22 22:36:56 by shimi-be         ###   ########.fr       */
+/*   Updated: 2024/11/24 13:07:40 by shimi-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # include <unistd.h>
 
 char	*get_line(char *stash, int fd);
-char *trim_line(char *str);
-int	ft_strlen(char *str);
-char *ft_strjoin(char *s1, char *s2);
-char *ft_strchr(char *str, int flag);
+char	*trim_line(char *str);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strchr(char *str, int flag);
 char	*get_next_line(int fd);
+int		ft_strlen(char *str);
 
 #endif

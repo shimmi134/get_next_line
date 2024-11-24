@@ -6,7 +6,7 @@
 /*   By: shimi-be <shimi-be@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:34:40 by shimi-be          #+#    #+#             */
-/*   Updated: 2024/11/23 18:06:58 by shimi-be         ###   ########.fr       */
+/*   Updated: 2024/11/24 18:00:08 by shimi-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-char *ft_strchr(char *str, int flag)
+char	*ft_strchr(char *str, int flag)
 {
 	int	i;
 
@@ -38,15 +38,15 @@ char *ft_strchr(char *str, int flag)
 		{
 			if (flag)
 			{
-				if (str[i+1] == '\0')
+				if (str[i + 1] == '\0')
 					return (NULL);
-				return (ft_strjoin(NULL,&str[i+1]));
+				return (ft_strjoin(NULL, &str[i + 1]));
 			}
 			else
 			{
-				if (str[i+1]== '\0')
+				if (str[i + 1] == '\0')
 					return (NULL);
-				return (&str[i+1]);
+				return (&str[i + 1]);
 			}
 		}
 		i++;
@@ -54,12 +54,11 @@ char *ft_strchr(char *str, int flag)
 	return (NULL);
 }
 
-
-char *trim_line(char *str)
+char	*trim_line(char *str)
 {
 	char	*arr;
-	int	len;
-	int	i;
+	int		len;
+	int		i;
 
 	len = 0;
 	i = 0;
@@ -81,74 +80,71 @@ char *trim_line(char *str)
 	return (arr);
 }
 
-char *ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char *arr;
-	int i;
-	int j;
+	char	*arr;
+	int		i;
+	int		j;
 
 	if (!s1 && !s2)
 		return (NULL);
-	i = ft_strlen(s1);
-	j = ft_strlen(s2);
-	arr = (char *)malloc(sizeof(char)*(i+j)+1);
+	arr = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (!arr)
 		return (NULL);
 	i = 0;
-	if (s1)
+	while (s1 && s1[i])
 	{
-		while (s1[i])
-		{
-			arr[i] = s1[i];
-			i++;	
-		}
+		arr[i] = s1[i];
+		i++;
 	}
-	if (s2)
+	j = 0;
+	while (s2 && s2[j])
 	{
-		j = 0;
-		while (s2[j])
-		{
-			arr[i+j]=s2[j];
-			j++;
-		}
+		arr[i + j] = s2[j];
+		j++;
 	}
-	arr[i+j] = '\0';
+	arr[i + j] = '\0';
 	return (arr);
 }
+/*
+void	insert_buffer(char **buff, char **arr, char **stash, int bytes_read)
+{
+	*buff[bytes_read] = '\0';
+	*arr = ft_strjoin(*stash,*buff);
+	if (!*arr)
+		return ;
+	free(*stash);
+	*stash = *arr;
+}*/
 
 char	*get_line(char *stash, int fd)
 {
-	int	bytes_read;
+	int		bytes_read;
 	char	*buff;
 	char	*arr;
 	char	*temp;
 
-	stash = NULL;
 	arr = NULL;
 	temp = NULL;
-	buff = (char *)malloc(BUFFER_SIZE+1);
+	buff = (char *)malloc(BUFFER_SIZE + 1);
 	if (!buff)
 		return (NULL);
 	bytes_read = 1;
-	buff[0]='\0';
+	buff[0] = '\0';
 	while (bytes_read > 0 && !temp)
 	{
 		free (temp);
-		temp = ft_strchr(buff,1);
-		bytes_read = read(fd,buff,BUFFER_SIZE);
+		temp = ft_strchr(buff, 1);
+		bytes_read = read(fd, buff, BUFFER_SIZE);
 		if (bytes_read > 0)
 		{
 			buff[bytes_read] = '\0';
-			arr = ft_strjoin(stash,buff);
+			arr = ft_strjoin(stash, buff);
 			free(stash);
 			stash = arr;
 		}
 		else if (bytes_read < 0)
-		{
-			return (free(buff),NULL);		
-		}
+			return (free(buff), NULL);
 	}
-	free(buff);
-	free(temp);
-	return (arr);
+	return (free(buff), free(temp), arr);
 }
