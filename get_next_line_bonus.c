@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shimi-be <shimi-be@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:34:32 by shimi-be          #+#    #+#             */
-/*   Updated: 2024/11/25 19:26:18 by shimi-be         ###   ########.fr       */
+/*   Updated: 2024/11/25 19:20:30 by shimi-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*find_nl(char *arr)
 {
@@ -41,28 +41,28 @@ char	*mall_buff(void)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash = NULL;
+	static char	*stash[OPEN_MAX];
 	char		*arr;
 	char		*temp;
 
 	if (fd < 0 || BUFFER_SIZE < 0)
 		return (NULL);
 	temp = NULL;
-	if (!stash || !ft_strchr(stash, 0))
+	if (!stash[fd] || !ft_strchr(stash[fd], 0))
 	{
-		if (stash && !ft_strchr(stash, 0))
-			temp = ft_strjoin(NULL, stash);
-		free(stash);
-		stash = get_line(stash, fd, 1);
-		arr = stash;
-		stash = ft_strjoin(temp, stash);
+		if (stash[fd] && !ft_strchr(stash[fd], 0))
+			temp = ft_strjoin(NULL, stash[fd]);
+		free(stash[fd]);
+		stash[fd] = get_line(stash[fd], fd, 1);
+		arr = stash[fd];
+		stash[fd] = ft_strjoin(temp, stash[fd]);
 		free(arr);
 		free(temp);
 	}
-	arr = trim_line(stash);
+	arr = trim_line(stash[fd]);
 	if (!arr)
-		return (free(stash), NULL);
-	temp = stash;
-	stash = ft_strchr(stash, 1);
+		return (free(stash[fd]), NULL);
+	temp = stash[fd];
+	stash[fd] = ft_strchr(stash[fd], 1);
 	return (free(temp), arr);
 }
