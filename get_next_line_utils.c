@@ -6,7 +6,7 @@
 /*   By: shimi-be <shimi-be@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:34:40 by shimi-be          #+#    #+#             */
-/*   Updated: 2024/11/24 18:00:08 by shimi-be         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:32:30 by shimi-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,45 +106,31 @@ char	*ft_strjoin(char *s1, char *s2)
 	arr[i + j] = '\0';
 	return (arr);
 }
-/*
-void	insert_buffer(char **buff, char **arr, char **stash, int bytes_read)
-{
-	*buff[bytes_read] = '\0';
-	*arr = ft_strjoin(*stash,*buff);
-	if (!*arr)
-		return ;
-	free(*stash);
-	*stash = *arr;
-}*/
 
-char	*get_line(char *stash, int fd)
+char	*get_line(char *stash, int fd, int br)
 {
-	int		bytes_read;
 	char	*buff;
 	char	*arr;
 	char	*temp;
 
 	arr = NULL;
 	temp = NULL;
-	buff = (char *)malloc(BUFFER_SIZE + 1);
-	if (!buff)
-		return (NULL);
-	bytes_read = 1;
-	buff[0] = '\0';
-	while (bytes_read > 0 && !temp)
+	buff = mall_buff();
+	while (br > 0 && !temp)
 	{
-		free (temp);
-		temp = ft_strchr(buff, 1);
-		bytes_read = read(fd, buff, BUFFER_SIZE);
-		if (bytes_read > 0)
+		br = read(fd, buff, BUFFER_SIZE);
+		if (br > 0)
 		{
-			buff[bytes_read] = '\0';
+			buff[br] = '\0';
 			arr = ft_strjoin(stash, buff);
+			if (!arr)
+				return (NULL);
 			free(stash);
 			stash = arr;
 		}
-		else if (bytes_read < 0)
+		else if (br < 0)
 			return (free(buff), NULL);
+		temp = find_nl(buff);
 	}
-	return (free(buff), free(temp), arr);
+	return (free(buff), arr);
 }
