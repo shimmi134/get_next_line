@@ -6,7 +6,7 @@
 /*   By: shimi-be <shimi-be@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:34:40 by shimi-be          #+#    #+#             */
-/*   Updated: 2024/11/25 16:32:30 by shimi-be         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:37:20 by shimi-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ char	*get_line(char *stash, int fd, int br)
 
 	arr = NULL;
 	temp = NULL;
+	stash = NULL;
 	buff = mall_buff();
 	while (br > 0 && !temp)
 	{
