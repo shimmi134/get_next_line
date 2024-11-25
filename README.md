@@ -2,6 +2,7 @@ In this small project, I have created a function named get_next_line, which read
 
 To compile, use:
 `cc -Wall -Wextra -Werror get_next_line.c get_next_line_utils.c your_other_files.c`
+
 <ins>Be sure to have the header file when you compile!</ins>
 
 The bonus part of this project is to be able to read from multiple fd's at once.
