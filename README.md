@@ -6,4 +6,5 @@ To compile, use:
 <ins>Be sure to have the header file when you compile!</ins>
 
 The bonus part of this project is to be able to read from multiple fd's at once.
+
 It compiles the same way, just remember to use the `_bonus{.c/.h}` files instead.
